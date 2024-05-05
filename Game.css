@@ -47,7 +47,7 @@ canvas {
 
 .score {
     position: absolute;
-    bottom: 20px;
+    bottom: 70px;
     left: 0;
     z-index: 1;
     width: 100%;
@@ -57,9 +57,10 @@ canvas {
     opacity: 0.3;
     text-transform: uppercase;
     color: white;
+    border-top: 5px solid #1969cb;
 }
 
-.controls{
+.controls {
     width: 100%;
     top: 0;
     left: 0;
