@@ -4,6 +4,7 @@ let gameBoard = document.getElementById("gameBoard");
 let ctx = gameBoard.getContext("2d");
 let xSpeed = unitSize;
 let ySpeed = 0;
+let score = 0;
 let running = true;
 
 let snake = [{
@@ -38,7 +39,7 @@ function nextTick() {
             moveSnake();
             drawSnake();
             nextTick();
-        }, 300)
+        }, 200)
     }
 }
 
@@ -59,7 +60,6 @@ function createFood() {
 }
 
 function drawFood() {
-    console.log("456")
     ctx.fillStyle = "red";
     ctx.fillRect(foodObject.x, foodObject.y, unitSize, unitSize);
 }
@@ -86,7 +86,13 @@ function moveSnake() {
         y: snake[0].y + ySpeed
     }
     snake.unshift(head);
-    snake.pop();
+    if (snake[0].x === foodObject.x && snake[0].y === foodObject.y) {
+        score++;
+        document.getElementById("scoreText").innerText = score;
+        createFood();
+    } else {
+        snake.pop();
+    }
 
 }
 
