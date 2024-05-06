@@ -2,6 +2,9 @@ let unitSize = 20;
 let foodObject;
 let gameBoard = document.getElementById("gameBoard");
 let ctx = gameBoard.getContext("2d");
+let xSpeed = unitSize;
+let ySpeed = 0;
+let running = true;
 
 let snake = [{
     x: unitSize * 3,
@@ -24,6 +27,24 @@ function startGame() {
     createFood();
     drawFood();
     drawSnake();
+    nextTick();
+}
+
+function nextTick() {
+    if (running) {
+        setTimeout(() => {
+            clearGameBoard();
+            drawFood();
+            moveSnake();
+            drawSnake();
+            nextTick();
+        }, 300)
+    }
+}
+
+function clearGameBoard() {
+    ctx.fillStyle = '#455A64';
+    ctx.fillRect(0, 0, gameBoard.width, gameBoard.height)
 }
 
 function createFood() {
@@ -55,4 +76,16 @@ function drawSnake() {
         ctx.fillRect(snake[i].x, snake[i].y, unitSize, unitSize);
         ctx.strokeRect(snake[i].x, snake[i].y, unitSize, unitSize);
     }
+
+
+}
+
+function moveSnake() {
+    let head = {
+        x: snake[0].x + xSpeed,
+        y: snake[0].y + ySpeed
+    }
+    snake.unshift(head);
+    snake.pop();
+
 }
