@@ -89,3 +89,32 @@ function moveSnake() {
     snake.pop();
 
 }
+
+window.addEventListener("keydown", changeDirect)
+
+function changeDirect(event) {
+
+    let key = event.key;
+    let goingUp = ySpeed === -unitSize;
+    let goingDown = ySpeed === unitSize;
+    let goingRight = xSpeed === unitSize;
+    let goingLeft = xSpeed === -unitSize;
+    if (key === "ArrowUp" && !goingDown) {
+        xSpeed = 0;
+        ySpeed = -unitSize;
+    }
+    if (key === "ArrowDown" && !goingUp) {
+        xSpeed = 0;
+        ySpeed = unitSize;
+    }
+    if (key === "ArrowRight" && !goingLeft) {
+        xSpeed = unitSize;
+        ySpeed = 0
+    }
+    if (key === "ArrowLeft" && !goingRight) {
+        xSpeed = -unitSize;
+        ySpeed = 0
+    }
+
+
+}
