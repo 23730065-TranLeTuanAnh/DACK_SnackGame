@@ -38,8 +38,11 @@ function nextTick() {
             drawFood();
             moveSnake();
             drawSnake();
+            checkGameOver();
             nextTick();
         }, 200)
+    } else {
+        displayGameOver();
     }
 }
 
@@ -49,7 +52,7 @@ function clearGameBoard() {
 }
 
 function createFood() {
-    console.log("123");
+
     let x = Math.round(Math.random() * gameBoard.width / unitSize) * unitSize;
     let y = Math.round(Math.random() * gameBoard.height / unitSize) * unitSize;
     foodObject = {
@@ -123,4 +126,28 @@ function changeDirect(event) {
     }
 
 
+}
+
+function checkGameOver() {
+    let touchUp = snake[0].y < 0;
+    let touchDown = snake[0].y > gameBoard.height - unitSize;
+    let touchLeft = snake[0].x < 0;
+    let touchRight = snake[0].x > gameBoard.width - unitSize;
+    if (touchUp || touchDown || touchLeft || touchRight) {
+        running = false
+    }
+    for (let i = 1; i < snake.length; i++) {
+        if (snake[0].x === snake[i].x && snake[0].y === snake[i].y) {
+            running = false;
+            break;
+        }
+    }
+}
+
+function displayGameOver() {
+
+    ctx.font = "50px MV Boli";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText("Game Over!", gameBoard.width / 2, gameBoard.height / 2);
 }
