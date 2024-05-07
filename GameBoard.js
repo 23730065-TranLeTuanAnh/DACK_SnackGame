@@ -6,6 +6,8 @@ let xSpeed = unitSize;
 let ySpeed = 0;
 let score = 0;
 let running = true;
+let checkButtonStart = false;
+const btnStart = document.querySelector('.btn-start')
 
 let snake = [{
     x: unitSize * 3,
@@ -21,10 +23,10 @@ let snake = [{
     y: 0
 }]
 
-startGame();
 
 
 function startGame() {
+    btnStart.textContent = 'restart';
     createFood();
     drawFood();
     drawSnake();
@@ -142,6 +144,17 @@ function checkGameOver() {
             break;
         }
     }
+}
+
+function restartGame() {
+    btnStart.textContent = 'start';
+    location.reload();
+
+}
+
+function displayGame() {
+    checkButtonStart = !checkButtonStart;
+    checkButtonStart ? startGame() : restartGame();
 }
 
 function displayGameOver() {
