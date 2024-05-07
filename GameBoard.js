@@ -7,7 +7,9 @@ let ySpeed = 0;
 let score = 0;
 let running = true;
 let checkButtonStart = false;
+let isPause = false;
 const btnStart = document.querySelector('.btn-start')
+const btnPause = document.querySelector('.btn-pause')
 
 let snake = [{
     x: unitSize * 3,
@@ -38,7 +40,12 @@ function nextTick() {
         setTimeout(() => {
             clearGameBoard();
             drawFood();
-            moveSnake();
+
+            if (!isPause) {
+                moveSnake();
+                btnPause.textContent = 'pause'
+            }
+
             drawSnake();
             checkGameOver();
             nextTick();
@@ -46,6 +53,11 @@ function nextTick() {
     } else {
         displayGameOver();
     }
+}
+
+function pauseGame() {
+    isPause = !isPause;
+    btnPause.textContent = 'resume';
 }
 
 function clearGameBoard() {
