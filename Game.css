@@ -15,6 +15,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(https://picsum.photos/200/200);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 .container {
@@ -25,6 +29,7 @@ body {
     box-shadow: 10px 10px 50px 15px rgba(black, 0.3);
     background-color: #455A64;
     position: relative;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .canvas-wrapper {
